@@ -1,5 +1,5 @@
 # Full bibliography
-
+```
 - Ahn, Dong H., Allison H. Baker, Michael Bentley, et al. “Keeping Science on Keel When Software Moves.” Communications of the ACM 64, no. 2 (2021): 66–74. https://doi.org/10.1145/3382037.
 - Alam, Sadaf R., Miguel Gila, Mark Klein, Maxime Martinasso, and Thomas C. Schulthess. “Versatile Software-Defined HPC and Cloud Clusters on Alps Supercomputer for Diverse Workflows.” The International Journal of High Performance Computing Applications 37, nos. 3–4 (2023): 288–305. https://doi.org/10.1177/10943420231167811.
 - Alashaikh, Abdulaziz, Eisa Alanazi, and Ala Al-Fuqaha. “A Survey on the Use of Preferences for Virtual Machine Placement in Cloud Data Centers.” ACM Computing Surveys 54, no. 5 (2021): 96:1-96:39. https://doi.org/10.1145/3450517.
@@ -47,3 +47,4 @@
 - Tavares, William F. C., Marcio R. M. Assis, and Edson Borin. “Leveraging vCPU-Utilization Rates to Select Cost-Efficient VMs for Parallel Workloads.” Proceedings of the 14th IEEE/ACM International Conference on Utility and Cloud Computing, December 6, 2021, 1–10. https://doi.org/10.1145/3468737.3494095.
 - Walkup, Robert, Seetharami R. Seelam, and Sophia Wen. “Best Practices for HPC Workloads on Public Cloud Platforms: A Guide for Computational Scientists to Use Public Cloud for HPC Workloads.” Proceedings of the 2022 ACM/SPEC on International Conference on Performance Engineering, April 9, 2022, 29–35. https://doi.org/10.1145/3489525.3511693.
 - Zhou, Naweiluo, Huan Zhou, and Dennis Hoppe. “Containerisation for High Performance Computing Systems: Survey and Prospects.” IEEE Transactions on Software Engineering 49, no. 4 (2023-4-1): 2722–40. https://doi.org/10.1109/TSE.2022.3229221.
+```
