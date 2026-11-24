@@ -1,0 +1,205 @@
+\PassOptionsToPackage{table}{xcolor}
+\documentclass[sigconf,review]{acmart}
+\settopmatter{printacmref=false} % Removes citation information below abstract
+\renewcommand\footnotetextcopyrightpermission[1]{} % removes footnote with conference information in first column
+\pagestyle{plain} % removes running headers
+
+\usepackage{pifont} % used for \todo symbol
+\usepackage[normalem]{ulem} % in the preamble
+
+\newcommand{\todo}[1]{\textcolor{blue}{\uline{#1}}}
+
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+\usepackage{pgfplotstable}
+\usepackage{tabularx}
+\usetikzlibrary{shapes,arrows,positioning}
+\usepackage{natbib}
+\usepackage{chronology}
+\usepackage{svg}
+\usepackage{colortbl} % Add this line to your preamble
+\usepackage{multirow}
+\usepackage{makecell}
+
+
+\makeatletter
+\renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\itshape}}
+
+\makeatother
+
+
+
+
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08emT\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Rights management information.
+% This information is sent to you when you complete the rights form.
+% the commands and values with those provided to you when you complete the rights form.
+%
+% These commands are for a PROCEEDINGS abstract or paper.
+
+% \copyrightyear{2018}
+% \acmYear{2018}
+% \setcopyright{acmlicensed}
+% \acmConference[Woodstock '18]{Woodstock '18: ACM Symposium on Neural Gaze Detection}{June 03--05, 2018}{Woodstock, NY}
+% \acmBooktitle{Woodstock '18: ACM Symposium on Neural Gaze Detection, June 03--05, 2018, Woodstock, NY}
+% \acmPrice{15.00}
+% \acmDOI{10.1145/1122445.1122456}
+% \acmISBN{978-1-4503-9999-9/18/06}
+
+%
+% These commands are for a JOURNAL article.
+%\setcopyright{acmcopyright}
+%\acmJournal{TOG}
+%\acmYear{2018}\acmVolume{37}\acmNumber{4}\acmArticle{111}\acmMonth{8}
+%\acmDOI{10.1145/1122445.1122456}
+
+%
+% Submission ID.
+% Use this when submitting an article to a sponsored event. You'll receive a unique submission ID from the organizers
+% of the event, and this ID should be used as the parameter to this command.
+%\acmSubmissionID{123-A56-BU3}
+
+%
+% The majority of ACM publications use numbered citations and references. If you are preparing content for an event
+% sponsored by ACM SIGGRAPH, you must use the "author year" style of citations and references. Uncommenting
+% the next command will enable that style.
+%\citestyle{acmauthoryear}
+
+% The first command in your LaTeX source must be the \documentclass command.
+%
+% end of the preamble, start of the body of the document source.
+\begin{document}
+
+% These commands have SAMPLE values in them; it is your responsibility as an author to replace
+  %
+% The "title" command has an optional parameter, allowing the author to define a "short title" to be used in page headers.
+\title{Bridging HPC and Cloud: Issues and Incentives}
+
+%
+% The "author" command and its associated commands are used to define the authors and their affiliations.
+% Of note is the shared affiliation of the first two authors, and the "authornote" and "authornotemark" commands
+% used to denote shared contribution to the research.
+
+% \author{Ben Trovato}
+% \authornote{Both authors contributed equally to this research.}
+% \email{trovato@corporation.com}
+% \orcid{1234-5678-9012}
+% \author{G.K.M. Tobin}
+% \authornotemark[1]
+% \email{webmaster@marysville-ohio.com}
+% \affiliation{%
+%   \institution{Institute for Clarity in Documentation}
+%   \streetaddress{P.O. Box 1212}
+%   \city{Dublin}
+%   \state{Ohio}
+%   \postcode{43017-6221}
+% }
+
+\author{German Savchenko and Tiziano De Matteis}
+\affiliation{%
+  \institution{Vrije Universiteit Amsterdam, The Netherlands}
+}
+\email{g,savchenko@student.vu.nl, t.de.matteis@vu.nl}
+
+
+%
+% By default, the full list of authors will be used in the page headers. Often, this list is too long, and will overlap
+% other information printed in the page headers. This command allows the author to define a more concise list
+% of authors' names for this purpose.
+%\renewcommand{\shortauthors}{Verdecchia, et al.}
+
+%
+% The abstract is a short summary of the work to be presented in the article.
+\begin{abstract}
+
+%\todo{The abstract of the study goes here. A good abstract shortly summarizes the paper by covering: (i) a presentation of the topic covered, (ii) the research followed, (iii) the main findings of the study, and (iv) the outcome of the investigation}
+
+    The shift of High Performance Computing (\textit{HPC}) workloads from \textit{on-premise} to \textit{cloud} environments is a critical topic, driven by the demand for scalable, flexible, and cost-effective computing solutions. An overview of the challenges and opportunities associated with this transition are provided, focusing mostly on research done within the last 5 years. To gain a broader perspective on the current state of the field, we also consider older research that highlights the initial limitations faced in earlier stages of HPC-Cloud convergence and attempts to delineate a timeline of progress.
+    Various aspects of \textit{HPC-Cloud convergence} are examined, as well as how it is affected by network performance, virtualization technologies, specialized hardware, containerization, cloud storage solutions, resource disaggregation, and emerging trends like serverless computing, edge computing, and AI integration. Key metrics identified include network latency, virtualization overhead, unpredictable performance, cost considerations, limited hardware options, and the lack of HPC-specific tools. The review highlights the importance of robust security measures, efficient data management and access, intelligent resource allocation and scheduling, and application adaptability and portability.
+    We conclude that a hybrid approach, combining on-premise HPC with Cloud resources, offers the most practical and beneficial path for convergence. This hybrid approach enables cloud bursting, workflow management, and software resource disaggregation, leveraging the strengths of both environments while mitigating the risks of a complete cloud transition. The study identifies promising advancements in cloud networking, containerization technologies, specialized hardware, and cloud storage services, contributing to a future where HPC and cloud computing increasingly work together. This integration enhances the reproducibility of scientific research, broadens access to high-performance computing for more organizations and researchers, and drives new opportunities for scientific discovery and technological innovation.
+
+
+
+\end{abstract}
+
+%
+% The code below is generated by the tool at http://dl.acm.org/ccs.cfm.
+% Please copy and paste the code instead of the example below.
+%
+% \begin{CCSXML}
+% <ccs2012>
+%  <concept>
+%   <concept_id>10010520.10010553.10010562</concept_id>
+%   <concept_desc>Computer systems organization~Embedded systems</concept_desc>
+%   <concept_significance>500</concept_significance>
+%  </concept>
+%  <concept>
+%   <concept_id>10010520.10010575.10010755</concept_id>
+%   <concept_desc>Computer systems organization~Redundancy</concept_desc>
+%   <concept_significance>300</concept_significance>
+%  </concept>
+%  <concept>
+%   <concept_id>10010520.10010553.10010554</concept_id>
+%   <concept_desc>Computer systems organization~Robotics</concept_desc>
+%   <concept_significance>100</concept_significance>
+%  </concept>
+%  <concept>
+%   <concept_id>10003033.10003083.10003095</concept_id>
+%   <concept_desc>Networks~Network reliability</concept_desc>
+%   <concept_significance>100</concept_significance>
+%  </concept>
+% </ccs2012>
+% \end{CCSXML}
+
+% \ccsdesc[500]{Computer systems organization~Embedded systems}
+% \ccsdesc[300]{Computer systems organization~Redundancy}
+% \ccsdesc{Computer systems organization~Robotics}
+% \ccsdesc[100]{Networks~Network reliability}
+
+%
+% Keywords. The author(s) should pick words that accurately describe the work being
+% presented. Separate the keywords with commas.
+\keywords{Systematic Literature Review, High Performance Computing (HPC), Cloud computing, HPC-Cloud Convergence, Hybrid Cloud, HPC-Cloud transition challenges}
+
+%
+% A "teaser" image appears between the author and affiliation information and the body
+% of the document, and typically spans the page.
+
+%
+% This command processes the author and affiliation and title information and builds
+% the first part of the formatted document.
+\maketitle
+% \tableofcontents
+%\vspace{10pt}
+\input{tex files/introduction.tex}
+\input{tex files/related_work.tex}
+\input{tex files/study_design.tex}
+\input{tex files/threats.tex}
+\input{tex files/results.tex}
+\input{tex files/discussion.tex}
+\input{tex files/future.tex}
+\input{tex files/conclusion.tex}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references2}
+% \nocite{*}
+
+%
+% If your work has an appendix, this is the place to put it.
+%\appendix
+
+
+\end{document}
