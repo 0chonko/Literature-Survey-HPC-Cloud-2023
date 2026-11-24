@@ -1,0 +1,99 @@
+\begin{table*}[ht]
+    \centering
+    \renewcommand{\arraystretch}{1} % Reduce vertical spacing
+    \resizebox{0.8\textwidth}{!}{ % Scale the table to 80% of text width, adjust height automatically
+    \small
+    \begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{4.5cm} >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}X}
+    \toprule
+    \textbf{Category} & \textbf{Challenges} & \textbf{Solutions} \\
+    \midrule
+    \textbf{Technological Aspects and Infrastructure} &
+    \begin{itemize}[label={\rule[0.1ex]{0.8ex}{0.8ex}}]
+    \item \textbf{Network Latency} Latency in cloud networks hinders performance of tightly coupled HPC applications.
+    \item \textbf{Virtualization Overhead} Virtualization introduces overhead, impacting HPC performance.
+    \item \textbf{Heterogeneity of Hardware}  Diverse accelerators and memory technologies create challenges for efficient resource utilization.
+    \item \textbf{Data Access Transparency} Ensuring seamless data access across different storage systems is crucial.
+    \item \textbf{User Experience and Migration Frameworks}  Providing a user-friendly interface and simplifying migration processes for HPC applications.
+    \end{itemize} &
+    \begin{itemize}[label={\rule[0.1ex]{0.8ex}{0.8ex}}]
+    \item High-speed interconnects (InfiniBand, RDMA), optimized protocols (MPI, RDMA), new technologies (Slingshot, CXL, Optical)
+    \item Containerization (Docker, Apptainer), OS-level virtualization, Bare-metal servers\newline
+    \item Cloud providers offering a wider range of specialized hardware, bare-metal servers with custom configurations
+    \item Libraries like S3Embedded, standardized protocols (S3 API), parallel file systems (Lustre, DAOS)
+    \item User-centric design of converged systems, containerization for portability, automated tools for deployment and management
+    \end{itemize} \\
+    \midrule
+    \textbf{Performance and Configuration} &
+    \begin{itemize}[label={\rule[0.1ex]{0.8ex}{0.8ex}}]
+    \item \textbf{Performance of HPC-Cloud Configurations} Optimizing HPC application performance across different cloud configurations.
+    \item \textbf{Scaling HPC Workloads} Addressing challenges in running large-scale HPC workloads in cloud environments.
+    \end{itemize} &
+    \begin{itemize}[label={\rule[0.1ex]{0.8ex}{0.8ex}}]
+    \item Advanced scheduling and allocation algorithms, dynamic resource management (DMR API, PMIx), cloud bursting\newline
+    \item High-performance cloud networks, elastic jobs, efficient resource management systems
+    \end{itemize} \\
+    \midrule
+    \textbf{Reproducibility and Transparency} &
+    \begin{itemize}[label={\rule[0.1ex]{0.8ex}{0.8ex}}]
+    \item \textbf{Reproducibility of Scientific Results} Ensuring consistent and reproducible execution of HPC applications.
+    \item \textbf{Sustainability} Balancing computational demands with environmental concerns.
+    \end{itemize} &
+    \begin{itemize}[label={\rule[0.1ex]{0.8ex}{0.8ex}}]
+    \item Containerization, standardized formats and APIs (OCI), version control systems\newline
+    \item Energy-efficient hardware, workload optimization, spatio-temporal workload shifting
+    \end{itemize} \\
+    \midrule
+    \textbf{Economic and Market Dynamics} &
+    \begin{itemize}[label={\rule[0.1ex]{0.8ex}{0.8ex}}]
+    \item \textbf{Cost Efficiency} Balancing performance with cost considerations in cloud-based HPC solutions.
+    \item \textbf{Market Evolution} Understanding the evolving cost landscape and infrastructure changes in the cloud computing market.
+    \end{itemize} &
+    \begin{itemize}[label={\rule[0.1ex]{0.8ex}{0.8ex}}]
+    \item Pay-as-you-go pricing models, resource disaggregation, automated optimization systems
+    \item Keeping abreast of industry trends, engaging with cloud providers, exploring new technologies
+    \end{itemize} \\
+    \bottomrule
+    \end{tabularx}
+    }
+    \caption{Categories of Consideration in High-Performance Computing in the Cloud}
+    \label{tab:hpc_cloud_categories}
+
+\end{table*}
+
+
+
+% \begin{table*}[ht]
+%     \centering
+%     \begin{tabular}{>{\raggedright}p{3.5cm} p{10cm}}
+%     \toprule
+%     \textbf{Category} & \textbf{Considerations} \\
+%     \midrule
+%     \textbf{Technological Aspects and Infrastructure} &
+%        \begin{itemize}[label={\rule[0.2ex]{1.0ex}{1.0ex}}]
+%           \item Containerization, virtualization, and exchange of technology between HPC and Cloud.
+%           \item Heteronization of hardware.
+%           \item Data access transparency.
+%           \item User experience and migration frameworks.
+%        \end{itemize} \\
+%     \midrule
+%     \textbf{Performance and Configuration} &
+%        \begin{itemize}[label={\rule[0.2ex]{1.0ex}{1.0ex}}]
+%           \item Performance of different HPC-Cloud configurations and convergence.
+%           \item Lack of studies on large scale workloads of HPC in the Cloud.
+%        \end{itemize} \\
+%     \midrule
+%     \textbf{Reproducibility and Transparency} &
+%        \begin{itemize}[label={\rule[0.2ex]{1.0ex}{1.0ex}}]
+%           \item Reproducibility of scientific results.
+%           \item Sustainability issues.
+%        \end{itemize} \\
+%     \midrule
+%     \textbf{Economic and Market Dynamics} &
+%        \begin{itemize}[label={\rule[0.2ex]{1.0ex}{1.0ex}}]
+%           \item Costs in a constantly evolving market and infrastructures.
+%        \end{itemize} \\
+%     \bottomrule
+%     \end{tabular}
+%     \caption{Categories of Consideration in High-Performance Computing in the Cloud}
+%     \label{tab:hpc_cloud_categories}
+%     \end{table*}

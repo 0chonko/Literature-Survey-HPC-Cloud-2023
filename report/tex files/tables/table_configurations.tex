@@ -1,0 +1,33 @@
+\begin{table*}[ht]
+\centering
+\small
+\renewcommand{\arraystretch}{1.5} % Adjust vertical spacing as needed
+\resizebox{1\textwidth}{!}{ % Scale the table to 80% of text width, adjust height
+\begin{tabular}{l p{5cm} p{5cm} p{5cm}}
+    \toprule
+     \textbf{Approach} & \textbf{HPC in the Cloud} & \textbf{HPC Plus Cloud} & \textbf{HPC as a Service} \\
+    \midrule
+    \textbf{Description} & Moving existing HPC applications to cloud environments, leveraging cloud providers' resources and services for execution. \cite{netto_hpc_2019, liu_hpc_2022}  &  Utilizing cloud resources as a supplement to on-premise HPC systems, primarily during peak workloads (Cloud Bursting). \cite{netto_deciding_2015, endo_consideration_2022} & Cloud providers expose HPC resources (hardware, software) as a service, allowing users to access them on demand without managing the underlying infrastructure. \cite{netto_hpc_2018, liu_hpc_2022} \\
+    \midrule
+    \textbf{Strengths} & \textbf{On-demand access} \cite{netto_hpc_2019}
+    \newline \textbf{Scalability} \cite{netto_hpc_2019}
+    \newline  \textbf{Cost-effectiveness} \cite{netto_hpc_2019}
+    \newline  \textbf{Improved network performance} due to advancements in cloud networking technology. \cite{guidi_10_2021, fernandez_evaluation_2022} & \textbf{Cost-effective} for handling temporary workload spikes. \cite{netto_deciding_2015}
+    \newline \textbf{Flexibility} without additional on-premise investments. \cite{netto_deciding_2015}
+    \newline \textbf{Seamless integration} with existing HPC workflows. \cite{endo_consideration_2022} & \textbf{On-demand access} to high-performance resources, including specialized hardware. \cite{netto_hpc_2018}
+    \newline \textbf{Reduced upfront investment} in hardware and software. \cite{netto_hpc_2018}
+    \newline \textbf{Flexibility and scalability}. \cite{netto_hpc_2018}
+    \newline \textbf{Access to a wider range of resources} and services. \cite{liu_hpc_2022} \\
+    \midrule
+    \textbf{Weaknesses} & \textbf{Limited control} over hardware and software configurations. \cite{gupta2014challenges, marathe2013challenges}
+    \newline \textbf{Challenges in porting applications} due to compatibility issues. \cite{zhao_resource_2023, liao_bridging_2021, choudhary_exascale_2021}  & \textbf{Potential performance issues} during transitions. \cite{netto_deciding_2015, endo_consideration_2022}
+    \newline \textbf{Workflow management challenges} across multiple environments. \cite{balis_scientific_2021}
+    \newline \textbf{Requires careful planning and optimization}. \cite{cunha_job_2016} &  \textbf{Cost concerns} for long-running workloads. \cite{netto_hpc_2018, liu_hpc_2022}
+    \newline \textbf{Requires specialized knowledge and tools}. \cite{netto_hpc_2018}
+    \newline  \textbf{May limit control over resources}. \cite{liu_hpc_2022} \\
+    \bottomrule
+\end{tabular}
+}
+\caption{HPC-Cloud Convergence Approaches}
+\label{tab:hpc_cloud_approaches}
+\end{table*}

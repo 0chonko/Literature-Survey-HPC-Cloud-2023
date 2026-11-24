@@ -1,0 +1,108 @@
+\begin{figure*}[]
+      \centering
+      \resizebox{0.9\textwidth}{!}{ \includesvg{tex files/tables/timeline.drawio.svg} }
+      \caption{Timeline of HPC-Cloud Convergence}
+      \label{fig:hpc_cloud_timeline}
+    \end{figure*}
+
+\section{Discussion}
+
+% \subsection{Timeline of cloud and HPC adoption}
+\subsection{Emerging trends}
+\label{subsec:emerging_trends}
+    % The intersection of HPC and cloud computing is rapidly evolving, driven by a wave of innovative trends that promise to revolutionize how scientific research, engineering design, and data-intensive applications are conducted. This convergence is fostering a new era of flexibility, scalability, and efficiency in HPC environments. \autoref{fig:hpc_cloud_timeline} illustrates the approximate estimation of the periods in which concrete trends were identified in the literature. After the topics were identified in the collected literature, an additional search iteration was performed on scientific databases (mostly Scopus). This iteration was meant to observe when a significant growth in publications for the specific topic was starting to gain popularity (\autoref{fig:enter-label}). There are some areas that could be identified with a temporal offset between the emerging trend and the actual first attempts. An example is about the identified growth in topic of Serverless computing, where some influential works have been done in 2017, while the topic growth has been labeled in 2021 \cite{van2017spec}. Thus, the timeline estimation is not exact, but it gives a clear overview of the progress in the convergence process.
+
+
+    The intersection of HPC and cloud computing is rapidly evolving, driven by innovative trends that are set to revolutionize scientific research, engineering design, and data-intensive applications. This convergence is ushering in a new era of flexibility, scalability, and efficiency within HPC environments. Figure \autoref{fig:hpc_cloud_timeline} provides an approximate timeline of when these trends were first identified in the literature. After initial identification, an additional search was conducted in scientific databases (primarily Scopus) to determine when significant growth in publications on these topics began to gain momentum (\autoref{fig:enter-label}). Some trends show a temporal gap between their emergence and the first attempts at implementation. For instance, serverless computing saw influential works in 2017, but significant growth in the topic wasn't observed until 2021 \cite{van2017spec}. While the timeline is not exact, it offers a clear overview of the progress in this convergence.
+
+    \begin{figure}[H]
+        \centering
+        \includesvg[width=0.5\linewidth]{misc/time_process.svg}
+        \caption{Estimating emergence of a topic trend}
+        \label{fig:enter-label}
+    \end{figure}
+
+
+
+    \subsubsection{Resource Disaggregation: Optimizing Hardware Utilization}
+    A key trend is resource disaggregation, which breaks down traditional HPC node configurations into smaller, specialized units, maximizing hardware utilization and enhancing flexibility. This approach allows for optimized resource allocation based on specific workload requirements, reducing overheads associated with underutilized components. Intra-rack disaggregation \cite{michelogiannakis_case_2022} and software resource disaggregation \cite{copik_software_2024} are key examples of this trend, enabling HPC systems to adapt dynamically to diverse and evolving demands.
+    \subsubsection{Software-Defined Infrastructure: Dynamic and Flexible HPC Environments}
+    Software-defined infrastructure (SDI) is transforming HPC environments by creating dynamic, flexible, and multi-tenant clusters that seamlessly integrate HPC and cloud technologies. Initiatives like vClusters \cite{alam_versatile_2023} leverage Infrastructure-as-Code (IaC) to automate resource provisioning and configuration, enabling DevOps practices and enhancing agility in HPC resource management.
+    \subsubsection{HPC-Cloud Storage Convergence: Efficient Data Management}
+    The convergence of HPC and cloud storage is revolutionizing how data-intensive scientific workflows are managed. This integration minimizes data transfer overhead, expands storage scalability, and provides cost-effective data management solutions. Libraries like S3embedded \cite{gadban_analyzing_2022} are paving the way for seamless integration of cloud storage with HPC systems, enhancing the efficiency of data-intensive scientific applications.
+    \subsubsection{Edge and Serverless Computing: Expanding HPC Capabilities}
+    \label{subsec:edge_computing}
+    The emergence of serverless computing platforms like AWS Lambda and OpenWhisk has opened new possibilities for running HPC workloads in the cloud. These platforms offer a pay-per-use model, allowing users to access computing resources on demand without managing infrastructure. Studies like \cite{chahal_isesa_2022} and \cite{copik_rfaas_2023} demonstrate that serverless platforms can achieve significant performance improvements for specific HPC applications, particularly those with short execution times and high parallelism. The paper introduces rFaaS, an RDMA-accelerated Function-as-a-Service (FaaS) platform designed to enhance serverless computing for high-performance and latency-sensitive applications. By integrating RDMA and implementing new resource management policies, rFaaS achieves microsecond invocation latencies and improves overall performance, making serverless computing viable for HPC workloads. \cite{chahal_isesa_2022} additionally introduces the intelligent Serverless Scalable Architecture (iSeSA) framework, which facilitates the migration of HPC and Artificial Intelligence (AI) workloads to serverless platforms. The framework leverages machine learning (ML) and deep learning (DL) techniques to optimize workload execution on serverless platforms, providing scalability and flexibility. The iSeSA framework automatically decides the execution environment (on-premise or serverless) based on resource demand, cost, and service level agreements (SLAs).
+
+    \subsubsection{AI and Machine Learning: Intelligent Optimization}
+    \label{subsec:ai_ml}
+    The integration of AI and machine learning into HPC-Cloud systems is a significant emerging trend, with applications ranging from optimizing resource allocation to powering new scientific applications.  AI is being used to enhance the performance and efficiency of HPC-Cloud systems in various ways. The Intelligent Serverless Scalable Architecture (iSeSA) framework \cite{chahal_isesa_2022} demonstrates how AI can be used to predict workload execution times and costs, enabling more efficient allocation of serverless resources for HPC and AI workloads. This framework also showcases the use of AI models for accurate temperature predictions for predictive maintenance, demonstrating the suitability of serverless platforms for AI inference tasks \cite{chahal_isesa_2022}. Another promising application is the use of machine learning to identify and rectify inefficiencies in cloud resource configurations for HPC, leading to significant cost savings and performance improvements \cite{michalewicz_attempt_2023}.
+    Research also indicates the potential for AI-driven resource-aware scheduling algorithms \cite{silva_review_2024}, enabling dynamic allocation of resources based on real-time workload demands in distributed HPC environments. AI can also be used to predict the performance of HPC applications on different cloud instances and automatically place workloads on the most suitable resources, significantly improving performance and reducing costs \cite{liang_scalable_2022}. Dynamic resource scaling, where AI adjusts the number of resources allocated to an HPC application based on real-time performance metrics, can help to ensure optimal performance while minimizing costs \cite{eberius_evaluating_2023}. AI can also be used to optimize network traffic flow and reduce latency in cloud environments, which is particularly important for HPC applications that require high-bandwidth communication \cite{alves_interference-aware_2020}. Furthermore, AI can be used to detect and recover from failures in HPC-Cloud systems, ensuring the reliability and availability of HPC applications. Finally, AI can be used to optimize the energy consumption of HPC-Cloud systems, reducing costs and minimizing the environmental impact of HPC \cite{silva_review_2024}.
+    Examples of AI-powered HPC applications are emerging in diverse fields. The BRICS CloudHPC project showcases a cerebrovascular segmentation algorithm accelerated by GPUs, demonstrating the potential of AI-powered applications in HPC-cloud environments \cite{noauthor_harnessing_nodate}.
+    Looking forward, the field is recognizing the need for improved Uncertainty Quantification (UQ) methods to better manage uncertainties in cloud environments \cite{kabir_uncertainty-aware_2022}. AI and ML techniques are seen as promising solutions for this challenge. The "HPC Forecast: Cloudy and Uncertain" article \cite{reed_hpc_2023} further highlights the increasing importance of AI technologies in shaping the future of HPC. The survey emphasizes the development and application of AI and machine learning for predicting and managing uncertainties in cloud computing \cite{kabir_uncertainty-aware_2022}. This includes areas like intelligent cloud management, where AI can be used to predict and adapt to changing resource availability and workload demands.
+
+
+
+
+\subsection{HPC and Cloud Convergence: A New Paradigm}
+\label{subsec:convergence}
+
+    As mentioned in \autoref{sec:perfconfiguration}, there seem to be three main options in HPC-Cloud: HPC in the Cloud, HPC Plus Cloud, and HPC as a Service. Here we discuss why HPC Plus Cloud or a converged option might be more future-proof. This approach recognizes the inherent strengths of both environments and seeks to leverage them for optimal results.
+    On-premise HPC offers dedicated resources, high-bandwidth interconnects, and specialized hardware optimized for demanding workloads. Cloud computing, on the other hand, provides scalability, flexibility, and pay-per-use models, ideal for handling fluctuating demands and resource-intensive tasks. Convergence allows users to harness the best of both worlds, creating a hybrid solution that balances performance, cost-effectiveness, and flexibility.
+    A complete cloud transition presents several challenges. The cost of running large-scale HPC applications on the cloud can be prohibitive, especially for long-term projects. Concerns around data security and privacy can arise when moving sensitive HPC data to public cloud environments. Additionally, complete cloud migration might limit control over the infrastructure and software environment, potentially disrupting existing workflows and research practices.
+    Convergence allows for a gradual adoption of cloud services while leveraging existing HPC investments. This approach facilitates the creation of hybrid workflows, where on-premise resources are combined with cloud services for specific tasks or workloads. Cloud bursting allows scaling up to cloud resources during peak demand periods, providing flexibility without the commitment of a total cloud transition. Convergence also enables incremental integration, where cloud-based storage solutions, tools, and services are incorporated within existing HPC environments.
+    Several entries in the literature highlight the benefits of this hybrid approach. For example, \cite{balis_scientific_2021} demonstrates the effectiveness of managing complex scientific workflows across hybrid cloud environments, leveraging cloud bursting for scalability and flexibility. The research exploring a hybrid cloud-HPC architecture for seamless job execution, \cite{endo_consideration_2022} enables users to leverage cloud resources for peak demands without altering their workflows. The vClusters project integrates HPC and cloud technologies, creating a versatile, multi-tenant cluster on the Alps supercomputer, showcasing the benefits of a hybrid approach \cite{alam_versatile_2023}.
+    There are more examples of literature, directly or indirectly, suggesting that the hybrid modality has the most potential to satisfy cost, usability, portability, transition, and performance criteria.
+
+
+
+Some of the observations found in the literature include the following.
+
+\begin{itemize}
+    \item Cloud services can enhance existing HPC systems by handling specific tasks within a larger infrastructure, demonstrating the potential for cloud computing to complement and extend HPC capabilities \cite{colonnelli_bringing_nodate}.
+    \item There is a need for specialized tools to predict how well HPC applications will perform on cloud platforms, suggesting that hybrid systems might require different approaches than running solely on the cloud \cite{noauthor_hpccloud_nodate}.
+    \item Choosing the best place to run an HPC job—on-premise or in the cloud—is complex, and hybrid environments require careful planning to ensure optimal performance \cite{cunha_job_2016}.
+    \item Using a combination of cloud and HPC resources can be beneficial for managing large, complex scientific workflows, offering flexibility and the ability to scale up quickly \cite{balis_scientific_2021}.
+    \item Cloud technology can make HPC systems more efficient and flexible, supporting the idea of combining these two technologies for better performance \cite{noauthor_harnessing_nodate}.
+    \item HPC and cloud systems can be integrated to create a seamlessly functioning hybrid environment \cite{noauthor_consideration_nodate}.
+    \item Combining cloud storage and HPC can improve the handling of massive amounts of data in research \cite{gadban_analyzing_2022}.
+\end{itemize}
+
+In conclusion, the literature emphasizes that the convergence of HPC and cloud computing presents a more practical and beneficial approach compared to a complete cloud transition. The trend also shows that in the span of the last decade, the challenges seem to be rooted in finding correct configurations to ensure maximum performance. However, the challenges are being solved, and the mixed nature of the two converging paradigms allows for a broad spectrum of innovations. The hybrid approach allows researchers and developers to harness the best of both worlds, achieving optimal performance, cost-effectiveness, and flexibility for diverse HPC workloads.
+
+
+
+\subsection{A Glimpse into the Future of Data-Intensive Science: The Power of Convergence}
+\label{subsec:future}
+
+    The convergence of HPC and cloud computing, as explored in this survey, has the potential to transform the landscape of HPC, and it is doing so already. Here’s a vision of this future:\\
+    \newline
+    \newline
+    \noindent
+    \textit{Accelerated Scientific Discovery}: A converged system will empower scientists to tackle larger, more complex scientific problems, leading to faster and more impactful discoveries. The ability to access immense computational and storage resources on demand, coupled with efficient data sharing, will enable simulations of unprecedented scale and complexity \cite{gadban_analyzing_2022, netto_hpc_2019}.
+    \newline
+    \newline
+    \noindent
+    \textit{Breakthroughs in Emerging Fields}: This convergence will fuel innovation in areas such as artificial intelligence, machine learning, and big data analytics. The access to massive computational resources and the capability to seamlessly share and analyze massive datasets will accelerate research and development in these fields \cite{silva_review_2024, liang_scalable_2022}.
+    \newline
+    \newline
+    \noindent
+    \textit{Democratization of HPC}: Converged systems will democratize access to HPC resources, allowing researchers and organizations with limited budgets to participate in cutting-edge research and development efforts. The ability to scale resources dynamically based on demand will make HPC more accessible to a broader community \cite{reed_hpc_2023}.
+    \newline
+    \newline
+    \noindent
+    \textit{Greater Efficiency and Cost Reduction}: Converged systems can optimize resource utilization by leveraging the elasticity of cloud computing and the high performance of HPC platforms. It will reduce the cost of running scientific workflows, improve system utilization, and lower energy consumption. This will enable organizations to allocate resources more effectively and achieve significant cost savings. The journey towards a truly converged HPC-Cloud ecosystem will involve overcoming numerous technical and organizational challenges. However, by leveraging the insights and solutions proposed in this dissertation, we can foster a new era of scientific exploration and unlock the full potential of data-intensive science \cite{noauthor_hpccloud_nodate, alam_versatile_2023, gadban_analyzing_2022, liang_scalable_2022, netto_deciding_2015}. \\
+
+    What will contribute to the convergence of HPC and cloud computing? The following factors will play a crucial role in shaping the future of scientific computing:
+    \newline
+    \newline
+    \noindent
+    \textit{The Role of Serverless Computing}: Serverless computing platforms like AWS Lambda offer a highly scalable and cost-effective solution for HPC workloads, especially those with dynamic and unpredictable resource demands \cite{copik_rfaas_2023, petrosyan_serverless_2022, chahal_isesa_2022}.
+    \newline
+    \newline
+    \noindent
+    \textit{Edge Computing}: Edge computing can further enhance HPC-Cloud convergence by bringing computation closer to the data source and reducing network latency and bandwidth requirements \cite{greneche_methodology_2022, kuity_investigating_2023, guo_understanding_2023, endo_consideration_2022}.
+     \newline
+     \newline
+    \noindent
+     \textit{Quantum Computing}: Quantum computing is poised to revolutionize HPC, and cloud providers are already offering access to quantum computers and simulators. This opens up new possibilities for solving complex scientific problems that are intractable for classical computers \cite{michalewicz_attempt_2023, ruhela_characterizing_2021}.

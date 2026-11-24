@@ -1,0 +1,330 @@
+\section{Results}
+\label{sec:results}
+    % \todo{In this section, the results of the literature review should be reported. This section can be split up according to the specific focus of the literature review, e.g. Publication Trends, Research Focus, and Potential for Industrial Adoption (see Running example)}
+
+\subsection{Early Challenges and Limitations}
+\label{sec:earlychallenges}
+
+    In the early days of Cloud computing, several factors made it difficult to port HPC applications to the Cloud. These challenges stemmed from the fundamental differences between traditional HPC environments and Cloud platforms, which were not initially designed to meet the demanding requirements of HPC workloads.
+    The landscape has since evolved rapidly. Advancements in hardware and software, networking, containerization technologies, storage systems, and even automated integration of AI into processes have narrowed the performance gap between Cloud and HPC environments. This improvement is evident in the analyzed literature and the volume of new releases related to this topic (\autoref{tab:hpc_cloud_categories}).
+    However, early challenges and limitations continue to influence the adoption and optimization of HPC applications in the Cloud. These challenges include: \\
+
+    \noindent
+    \textbf{Network Latency:} Cloud networks, often relying on TCP/IP and Ethernet, were designed for general-purpose applications, introducing significant latency compared to the high-speed interconnects used in HPC clusters (e.g., InfiniBand). This latency severely impacted the performance of tightly coupled HPC applications, where frequent communication between processes was crucial. Even with 10 Gigabit Ethernet, Cloud networks struggled to provide the low latency and high bandwidth needed for efficient HPC communication \cite{wang2010cloud}. This network bottleneck significantly increased the cost of running long-running HPC applications in the Cloud due to unpredictable performance variations \cite{gupta2014challenges, marathe2013challenges}. \\
+
+
+    \noindent
+    \textbf{Virtualization Overhead:} Virtualization technologies, used to create isolated environments for applications in the Cloud, introduced overhead in terms of CPU cycles, memory access, and network communication. This overhead further degraded the performance of HPC applications, especially those with high communication demands. The performance penalty associated with virtualization, particularly for HPC applications, was highlighted \cite{jackson2010performance}. \textit{Hypervisor-based virtualization}, a technology supporting multiple guest VMs running on a server and sharing resources, introduced significant overhead, impacting memory, I/O, and interconnect performance \cite{babu2014hypervisor, yunge2011cloud}. \\
+
+    \noindent
+    \textbf{Unpredictability:} The shared nature of Cloud resources made it difficult to predict the performance of HPC applications. The presence of other workloads on the same physical infrastructure could lead to unpredictable performance variations and resource contention. Predicting performance in a shared Cloud environment presented challenges \cite{gupta2014challenges, marathe2013challenges}. The presence of other workloads could significantly impact the performance of HPC applications, making it difficult to estimate execution times and costs.
+
+    \noindent
+    \textbf{Cost:} Cloud providers typically charge for compute and bandwidth usage, which could quickly add up for HPC workloads that generate large amounts of data. This made it challenging to estimate the cost of running HPC applications in the Cloud and hindered their adoption. The cost concerns associated with Cloud computing for HPC were acknowledged \cite{jackson2010performance, gupta2014challenges, marathe2013challenges}. The pay-as-you-go model, while flexible, could lead to high costs for resource-intensive HPC applications. \\
+
+    \noindent
+    \textbf{Limited Hardware Options:} Cloud providers offered a limited range of hardware options compared to HPC clusters, which often featured specialized processors and accelerators. This restricted the ability to run HPC applications that required specific hardware configurations. The limited hardware choices available in the Cloud compared to dedicated HPC systems were pointed out \cite{gupta2014challenges, marathe2013challenges}. This lack of specialized hardware options hindered the adoption of Cloud computing for certain HPC applications. \\
+
+    \noindent
+    \textbf{Lack of HPC-Specific Tools:} Cloud platforms lacked the tools and support needed for managing and deploying HPC applications. This included specialized schedulers, monitoring tools, and libraries for parallel I/O. The need for HPC-specific tools in the Cloud was emphasized \cite{yelick2011challenges, gupta2014challenges}. The lack of mature solutions for managing and deploying HPC applications hindered their adoption. \\
+
+    While the analyzed literature is still rooted in these initial challenges, advancements in Cloud computing have addressed many of these issues. However, they continue to influence the design, optimization, and deployment of HPC applications in the Cloud. By understanding these early challenges, researchers and practitioners can develop strategies to overcome them and leverage the full potential of Cloud computing for HPC workloads.
+
+
+
+
+
+    % ################################################################################
+\subsection{Technological Aspects and Infrastructure}
+\label{sec:techinfrastructure}
+
+    % Containerization, virtualization, and exchange of technology between HPC and Cloud.
+    % Heteronization of hardware.
+    % Data access transparency.
+    % User experience and migration frameworks.
+    In order to better understand the interaction between the two paradigms we explore the relevant technologies and the exchange of these between HPC and Cloud. The underlying hardware, data management, and a general user experience in both environments are to be investigated too.
+    We analyze, on the hardware level, network performance and specialized hardware (heterogeneity). Latency has been a great bottleneck for HPC workloads in the Cloud but this changed with the implementation of new \textit{interconnect technologies} inside Cloud server infrastructures, leading to a number of studies demonstrate near-bare-metal performance for some selection of workloads. Diversification of hardware within the Cloud servers has been limited by the lack of high speed interconnects \cite{alves_interference-aware_2020}\cite{michelogiannakis_case_2022}.
+    On the software side, we analyze containerization, job elasticity, cloud storage and its usage in HPC, resource disaggregation, HPC specific tools in Cloud environments.
+
+
+
+
+
+    % \subsubsection{Performance and scalability}
+    % The convergence of HPC and Cloud computing is driven by the increasing demand for HPC resources and the need for flexible and scalable solutions. The reviewed literature highlights the significant progress made in bridging the performance gap between Cloud and HPC environments.
+
+% \subsection{Hardware}
+    \subsubsection{Hardware - Network Performance:} Historically, network latency and bandwidth limitations have been significant barriers to running HPC applications in the Cloud. However, advancements in Cloud networking technologies, including high-speed interconnects and optimized communication protocols such as \textit{InfiniBand} and \textit{RDMA} (Remote Direct Memory Access), have significantly narrowed the performance gap between Cloud and HPC. Advancements in Cloud networking technologies, including high-speed interconnects and optimized communication protocols, have significantly improved the performance of HPC applications in the Cloud. Studies like \cite{guidi_10_2021} and \cite{fernandez_evaluation_2022} demonstrate that modern Cloud platforms can achieve performance levels comparable to traditional HPC systems for specific workloads. The improvements in Cloud infrastructure, such as high-speed memory systems and interconnects, have significantly narrowed the performance gap. The studies compare the performance of the Cori Cray XC40 HPC system at NERSC with AWS EC2 instances optimized for memory-intensive and compute-intensive workloads. The results show that modern Cloud instances demonstrate significantly improved network performance, with AWS R5 achieving comparable or better inter-node communication performance than HPC systems. Additionally, optimized communication protocols and network configurations can further enhance the performance of Cloud-based HPC applications, making them suitable for a wide range of workloads. \cite{fernandez_evaluation_2022} analyzes the performance of parallel solvers and MPI communications using Infrastructure as a Service (IaaS) from public Cloud providers. The study utilizes the \textit{HPCG benchmark} and \textit{OSU microbenchmark} suite to assess the performance of HPC applications on IaaS from \textit{AWS}, \textit{Google Cloud Platform} (GCP), \textit{Azure}, \textit{Oracle Cloud Infrastructure}, and \textit{Packet}. The research highlights the significance of network bandwidth for scalability, demonstrating that clusters with 100 Gbps bandwidth maintain high scalability even at 4,500 cores. The study also emphasizes the importance of network latency and jitter for tightly coupled parallel solvers, showing that low-latency networks are essential for achieving high performance in Cloud-based HPC environments.
+
+    While InfiniBand and RDMA continue to be key technologies (and implemented in Cloud environments \cite{maliszewski2020performance}), new advancements are emerging:
+    \textit{Slingshot}: Cray's Slingshot interconnect, designed for exascale systems like Frontier and LUMI, offers high bandwidth and low latency, enabling efficient communication between nodes. It's adoption in Cloud, however, seems to be very limited at the moment.
+    \textit{CXL (Compute Express Link)}: CXL is a new interconnect standard designed to provide high-speed communication between CPUs, GPUs, and other accelerators. It promises to improve the performance and flexibility of disaggregated HPC systems \cite{shan_hybrid_2022}. Additionally, the technology seems to be gaining popularity in Cloud environments \cite{10247726}.
+   \textit{ Optical Interconnects}: Optical interconnects are gaining traction in HPC and Cloud environments due to their ability to achieve higher bandwidth (up to 800 Gbps) and lower latency compared to electrical interconnects \cite{michelogiannakis_case_2022, guo_understanding_2023, michelogiannakis_efficient_2023}. These interconnects are also being adopted in Cloud environments \cite{9793366}.
+
+    % \subsubsection{Hardware - Storage}
+    % \label{subsec:storage}
+
+    \subsubsection{Hardware - Specialized Hardware}
+    The early Cloud platforms offered limited hardware options, primarily focusing on general-purpose CPUs. However, the increasing demand for HPC workloads, particularly those involving machine learning and artificial intelligence, has driven Cloud providers to offer a wider range of specialized hardware.
+    \textit{GPUs}: GPUs, initially designed for graphics rendering, have become powerful accelerators for computationally intensive tasks, especially in machine learning and scientific computing. Cloud providers like AWS, Azure, and GCP now offer a variety of GPU instances, allowing users to leverage the parallel processing power of GPUs for their HPC applications \cite{giannoutakis_evaluation_2021, balis_scientific_2021, malla_hpc_2019, fernandez_evaluation_2022}.
+    \textit{TPUs}: TPUs are custom-designed ASICs (Application-Specific Integrated Circuits) specifically optimized for machine learning workloads. Google Cloud Platform offers TPU instances, providing significant performance gains for training and inference of large-scale machine learning models \cite{pena-monferrer_hpc-cloud_2021}.
+    \textit{FPGAs}: FPGAs are reconfigurable hardware devices that can be programmed to perform specific tasks. Cloud providers like AWS and Xilinx offer FPGA instances, allowing users to customize hardware for specific applications and achieve high performance for specialized workloads \cite{giannoutakis_evaluation_2021}.
+    ARM Processors: ARM processors are gaining traction in the Cloud, with AWS's Graviton processors demonstrating significant performance improvements for certain workloads. The adoption of ARM in HPC is still in its early stages, but it holds promise for future exascale systems \cite{fernandez_evaluation_2022, nowicki_performance_2021}.
+
+    The emergence of Bare-Metal servers allows for more direct access to the hardware, enabling users to leverage specialized hardware configurations for their HPC workloads without incurring in virtualization overheads \cite{guidi_10_2021, cho_possibility_2019,kumar_containerized_2022, kuity_investigating_2023}.
+
+
+% \subsection{Software}
+    \subsubsection{Software - Containerization:} Containerization technologies have revolutionized application deployment and portability. Containers encapsulate applications and their dependencies, allowing them to run consistently across different environments, including HPC clusters and Cloud platforms. Docker is a popular open-source containerization platform that provides a lightweight and portable way to package and run applications. Docker containers are isolated environments that include all the necessary dependencies for an application to run, making it easy to deploy and manage applications across different systems \cite{beserra_performance_2015, cho_possibility_2019, kuity_investigating_2023}. Apptainer (former Singularity), on the other hand, is a containerization platform specifically designed for HPC environments. It provides native support for MPI, InfiniBand, and GPUs, making it ideal for running high-performance applications in containers. Apptainer also offers features for security and reproducibility, ensuring that applications run consistently across different systems \cite{roy_mashup_2022, petrosyan_serverless_2022, elisseev_multiscale_2022, zhou_containerisation_2023, ruhela_characterizing_2021}. Other contestants like CharlieCloud and Podman have also emerged as promising solutions for deploying and managing HPC applications in Cloud environments. Sarus, similarly to Apptainer, is also a container engine specifically designed for HPC systems which combines container portability with native HPC performance, offering features like direct access to compute and I/O devices and integration with batch resource management systems.  \cite{copik_rfaas_2023, benedicic_sarus_2019}
+
+    Studies like \cite{ruhela_characterizing_2021} and \cite{kuity_investigating_2023} demonstrate that containerized HPC environments can achieve near-native performance for most subcomponents, making them suitable for HPC workloads. The study evaluates the performance of container technologies on up to 6,144 nodes with 344,064 processes, using benchmarks like Intel MPI Benchmarks (IMB) and the MILC (lattice quantum chromodynamics) and VPIC (Vector Particle-In-Cell) applications. The results indicate minimal overheads for containerized runs compared to bare metal. In some cases, the network performance is even higher than native performance, possibly due to lower scheduling and process management overhead. These technologies also offer multiple degree of encapsulation, where the user is provided with the choice of trade-off between portability and ease of use against performance and security \cite{kuity_investigating_2023, cho_possibility_2019, ruhela_characterizing_2021}.
+
+    \citeauthor{zhou_containerisation_2023} provides a comprehensive survey of containerization technologies and orchestration strategies for HPC systems. The study highlights the differences between containerization in Cloud and HPC environments, particularly focusing on security and performance. The paper concludes that while containerization offers significant benefits for HPC, such as improved software management and reproducibility, challenges remain in security and performance. Future research should focus on developing container technologies that better integrate with HPC environments, addressing compatibility, security, and performance trade-offs.
+
+
+    \subsubsection{Software - Elasticity}
+    The concept of elastic jobs, which can dynamically resize their process count at runtime, has emerged as a promising approach to improve HPC system utilization and performance. The concept is very common in Cloud computing but not in HPC. The technologies that make it possible are the following:
+
+    \textit{DMR API}: The DMR (Dynamic Resource Management) API is a standard interface for managing elastic jobs in HPC systems. It allows applications to request changes in their resource allocation, enabling them to adapt to varying system conditions \cite{iserte_dmr_2018}.
+    \textit{PMIx}: PMIx (Process Management Interface for Exascale) is a library that provides a standardized interface for managing processes in HPC systems. It supports features like dynamic process creation, termination, and communication, which are essential for implementing elastic jobs \cite{castain_pmix_2018, huber_pmix_2022}.
+    Elasticity has the potential to significantly improve HPC system utilization and performance by allowing applications to adapt to changing resource availability.
+    \textit{Flux}: Flux is a next-generation workload management framework designed for supercomputers, HPC clusters, Cloud servers, and laptops. It features a modular design and combines hierarchical resource management with graph-based scheduling to improve the performance, portability, flexibility, and manageability of scientific workflows \cite{ahn_flux_2020}.
+
+
+    \subsubsection{Software - Cloud Storage for HPC}
+    Cloud storage services have become a viable alternative to traditional HPC storage systems, offering advantages in terms of scalability, cost, and accessibility. However, the performance of Cloud storage in HPC environments still needs to be carefully evaluated, as it can introduce overhead and limitations compared to HPC-specific storage solutions.
+
+    Services like \textit{Amazon S3}, \textit{Google Cloud Storage}, and \textit{Azure Blob Storage} have become increasingly popular for HPC workloads, offering high scalability, cost-effectiveness, and ease of access. The use of Cloud storage for HPC workloads has been discussed, \cite{guidi_10_2021, guidi2021evaluation} and the performance of S3 in HPC environments has been further investigated, highlighting potential benefits and challenges \cite{gadban2021s3embedded, gadban2020http}.
+
+    \textit{Amazon S3}: Amazon S3 is a highly scalable and durable object storage service that provides a RESTful API for accessing data. It offers features like data replication, encryption, and access control, making it suitable for storing and managing large data sets \cite{gadban2021s3embedded, guidi2021evaluation}. The S3 API remains the de facto standard for accessing Cloud storage. Cloud providers and open-source solutions offer S3-compatible storage services, making it a versatile option for HPC applications. The S3Embedded library, developed in this work, demonstrates the potential for seamless integration of Cloud storage into HPC systems. It offers a lightweight and efficient way to leverage existing HPC storage infrastructure for Cloud-based applications \cite{gadban2021s3embedded}.
+    \textit{DAOS}: DAOS (Distributed Application Object Storage) is an open-source, parallel file system designed for high-performance storage operations. It is optimized for persistent memory technologies like Optane DIMMs and NVMe-accessed SSDs, offering low latency and high throughput \cite{wu2019daos, lofstead2016daos}.
+    \textit{Google Cloud Storage}: Google Cloud Storage is a similar object storage service offered by Google Cloud Platform. It provides a RESTful API for accessing data and offers features like data replication, encryption, and access control \cite{gadban_investigating_2020, guidi_10_2021}.
+    \textit{Azure Blob Storage}: Azure Blob Storage is Microsoft Azure’s object storage service. It provides a RESTful API for accessing data and offers features like data replication, encryption, and access control \cite{guidi_10_2021, endo_consideration_2022}.
+
+
+    \subsubsection{Software - Resource disaggregation}
+
+    The literature has shown that resource disaggregation is a relatively new field of research. The first paper that we found was published in 2013 \cite{barroso_resource_2013}. Since then, the number of publications has been increasing steadily. This indicates that resource disaggregation is a field of growing interest \cite{michelogiannakis_efficient_2023, michelogiannakis_case_2022, copik_software_2024}.
+
+    The research focus of the papers that we found is mainly on the development of new algorithms and methods for resource disaggregation. The main outcomes found are better usage of racks, fewer network interfaces (NICs), fewer memory modules, and improved performance overall. Additionally, many studies focus on applying resource disaggregation with AI workloads. suggesting that machine learning in Cloud environments is a field of growing interest \cite{michelogiannakis_case_2022, michelogiannakis_efficient_2023, copik_software_2024}.
+
+    The potential for industrial adoption of resource disaggregation, however, is not yet clear. The literature review has shown that there are some promising results, including improved power efficiency, but that there are also many open questions. For example, it is not yet clear how well resource disaggregation works in practice on a large scale (i.e. some experiments were executed on a set of 25 CPUs and 24 GPUs), and what the costs and benefits are. Further study is required for advancing the field forward.
+
+
+
+
+    \subsubsection{Software - HPC-Specific Tools}
+    Cloud providers have recognized the growing demand for HPC workloads and have developed tools and services specifically designed for managing and deploying HPC applications in the Cloud.
+    \textit{AWS ParallelCluster}: AWS ParallelCluster is a tool that automates the deployment of HPC clusters on AWS. It simplifies the process of setting up a cluster with the necessary software and configurations, making it easier for HPC users to leverage AWS resources \cite{guidi2021evaluation}.
+    \textit{Azure CycleCloud}: Azure CycleCloud is a similar tool offered by Microsoft Azure. It provides a user-friendly interface for deploying and managing HPC clusters on Azure, simplifying the process for HPC users \cite{guidi2021evaluation}.
+    \textit{GCP Slurm Cluster}: Google Cloud Platform offers a tool for deploying Slurm clusters on Google Compute Engine. This tool simplifies the process of setting up a Slurm cluster on GCP, making it easier for HPC users to leverage GCP resources \cite{guidi_10_2021, guidi2021evaluation}.
+
+    These tools have significantly reduced the barrier to entry for HPC users in the Cloud, making it easier to access and manage HPC resources.
+
+
+
+    % IaaS (Infrastructure as a Service) provides on-demand remote access to client-specified compute environments, including both virtualized setups and "bare metal" setups for HPC, with CADD tools deployable as Cloud images or installed post-deployment;
+    % PaaS (Platform as a Service) facilitates software operation and scaling in multi-user, multi-project environments; SaaS (Software as a Service) operates remotely, scaling across multiple nodes in an IaaS environment and presented typically as a web interface, widely adopted in various industries;
+    %FaaS (Function as a Service), a SaaS component, is invoked without context, integrating VS-associated services into larger workflows
+    %HaaS (Hardware as a Service)
+
+    %([Olğaç et al., 2019, p. 270](zotero://select/library/items/PKURBRPY)).
+
+     % ################################################################################
+\subsection{Performance, Configuration, and Deployment Models}
+\label{sec:perfconfiguration}
+
+        % Performance of different HPC-Cloud configurations and convergence.
+        % Lack of studies on large scale workloads of HPC in the Cloud.
+
+        The interaction between an HPC system and a Cloud system exists on a spectrum. A system may lean more towards HPC with minimal integration of Cloud technologies, or vice versa, while others may strike a balance between the two.  Ideally, tasks on the \textit{mixed system} are executed with near-native performance, achieving efficiency as if running on the system specifically designed for them. The convergence, thus, can be categorized into three main approaches (\autoref{tab:hpc_cloud_approaches}): \textit{HPC in the Cloud}, which focuses on moving HPC applications to Cloud environments; \textit{HPC plus Cloud}, where Clouds are used to complement HPC resources \cite{endo_consideration_2022, balis_scientific_2021, XaaS-torsten}; and \textit{HPC as a Service}, which exposes HPC resources via Cloud services \cite{netto_hpc_2018, liu_hpc_2022}. A mixed system (converged HPC-Cloud) can handle tasks that were previously exclusive to individual non-converged systems, enabling a unified HPC and Cloud system to seamlessly execute both HPC and Cloud applications \cite{gadban_analyzing_2022}. A notable example is XaaS, a unified architecture leveraging performance-portable containers, which offers the flexibility and efficient resource utilization of serverless computing while accommodating long-running, performance-sensitive HPC workloads \cite{XaaS-torsten}.
+
+        % Clouds provide rapid provisioning of resources and a significant reduction in operating costs related to energy, software licenses, and hardware obsolescence. With the recent increase in the number of cores in modern physical machines, HPC applications can scale up to many cores even when fully allocated to a single physical machine. Consequently, Clouds can offer reasonable service performance for small-scale HPC applications, thus avoiding the performance penalty usually imposed by the physical network of Clouds \cite{alves_interference-aware_2020}.
+
+        A limiting factor of HPC-Cloud is the abstraction of the underlying Cloud infrastructure from the user, which limits the possibility of tuning the HPC applications. Moreover, while Cloud networks have experienced substantial improvements in network performance (bandwidth/latency), the performance is yet to match HPC performance to optimally host large-scale multi-node workloads. Additionally, having multiple users (multi-tenancy) adds an additional layer of overhead over which the users do not have any control. Cross-interference may happen when applications share a common physical machine, affecting negatively their performances. This problem occurs frequently when high-performance applications are executed in Clouds \cite{alves_interference-aware_2020}. Cloud providers stack several workloads on the same physical resources to explore economies of scale; an approach not always appropriate for HPC applications \cite{netto_hpc_2019}, which raises questions over how to deploy applications properly in an HPC-Cloud converged environment. More research is needed to harmonize HPC and Cloud paradigms “to get the best of both worlds” concerning transparent computing performance, scalability, and resilience \cite{marques_harnessing_2021}.
+
+        The compromise that currently overcomes these issues is the Infrastructure as a Service (IaaS), which is already able to replace small and medium on-premise HPC clusters while providing a lot more flexibility in the number of cores, fluctuating workloads, storage solutions, and other strengths generally associated with the public Cloud \cite{fernandez_evaluation_2022}. Furthermore, simulations show significant improvements in adding elastic jobs with up to 35.34\% higher system utilization, 75.3\% lower runtime, 99.76\% lower wait time, and 75.22\% lower total turnaround time \cite{eberius_evaluating_2023}. Overall, there are aspects that fundamentally clash between HPC and Cloud still today, while others promote convergence with great results.
+
+        \input{tex files/tables/table_configurations}
+
+
+
+
+
+    \subsubsection{Hybrid Cloud and HPC Integration: The Best of Both Worlds:} The convergence of HPC and Cloud computing is often realized through hybrid Cloud models, where on-premise HPC systems are integrated with Cloud resources to provide a flexible and scalable computing environment. This approach combines the high performance and dedicated resources of on-premise HPC with the scalability, cost-efficiency, and flexibility of Cloud computing. \\
+    \newline
+    \textbf{Cloud Bursting: Scaling on Demand:} Cloud bursting allows users to leverage Cloud resources during peak demand periods, supplementing on-premise HPC systems. This approach provides a cost-effective way to handle temporary spikes in workload without investing in additional on-premise infrastructure.
+    \begin{itemize}
+        \item \textbf{Performance and Cost Analysis:} Studies explore the operational considerations and performance implications of Cloud bursting, evaluating the impact on job execution time and monetary costs using various benchmarks. The results show that Cloud bursting can be an effective strategy for handling peak workloads, but it is important to consider the performance and cost trade-offs \cite{netto_deciding_2015, endo_consideration_2022}.
+
+        \item \textbf{User Transparency:} The importance of user transparency in Cloud-bursting environments is emphasized, recommending subsidizing the cost gap between Cloud and on-premise resources to encourage Cloud usage during peak loads. It also proposes user education and extended job scheduler capabilities to manage job offloading effectively \cite{endo_consideration_2022}.
+    \end{itemize}
+
+    \noindent
+    \textbf{Workflow Management: Orchestrating Complexity:} The management of complex scientific workflows across hybrid Cloud environments is a critical challenge. These workflows often involve multiple stages, data transfers, and resource dependencies, requiring sophisticated orchestration and management tools.
+
+\begin{itemize}
+\item \textbf{Transparent Data Access:} Frameworks for managing workflows across multiple platforms have been proposed, ensuring data consistency and efficient resource allocation. These solutions effectively manage scientific workflows on hybrid Clouds, leveraging Kubernetes for portability and Onedata for transparent data access. A partitioning algorithm balances load distribution and minimizes communication volumes, showing significant potential for optimizing scientific computing tasks across hybrid Cloud environments \cite{balis_scientific_2021}.
+\item \textbf{Multiscale Simulations:} The feasibility of using a containerized approach to deploy and execute multiscale scientific workflows in hybrid Cloud environments has been demonstrated. This framework enhances flexibility, reproducibility, and scalability of complex simulations, focusing on an end-to-end modeling case of mayonnaise production. It integrates simulation services at atomistic, mesoscopic, and continuum levels, leveraging containerization for flexible and reproducible deployment of complex multiscale simulations in both on-premise and Cloud systems \cite{elisseev_multiscale_2022}.
+\end{itemize}
+
+    \noindent
+    \textbf{Software Resource Disaggregation: Leveraging Serverless for HPC:} The integration of serverless computing with HPC environments offers a new approach to resource disaggregation. This approach allows for the dynamic allocation of resources on idle HPC nodes, improving resource utilization and cost efficiency.
+
+    \begin{itemize}
+        \item \textbf{FaaS Integration:} Studies demonstrate that serverless computing can dynamically allocate resources on idle HPC nodes, improving resource utilization and cost efficiency. The proposed system leverages Function-as-a-Service (FaaS) to provide fine-grained access to HPC resources, allowing underutilized nodes to be dynamically allocated for short-term tasks without significant hardware modifications \cite{copik_software_2024}.
+        \item \textbf{rFaaS:} rFaaS (Remote Function-as-a-Service) is an RDMA-accelerated serverless platform designed for high-performance and latency-sensitive applications. It leverages RDMA to achieve microsecond-scale invocations and efficient data movement, making it suitable for HPC workloads \cite{copik_rfaas_2023}.
+        \item \textbf{FuncX:} FuncX is a federated serverless platform that enables the execution of functions across distributed resources. It offers a flexible and scalable solution for HPC workloads, but its invocation latency can be higher due to its distributed nature \cite{chard_funcx_2020}.
+        \item \textbf{Wukong:} Wukong is a scalable and locality-enhanced framework for serverless parallel computing. It leverages AWS Lambda and optimizes function placement for low latency and high throughput \cite{carver2020wukong}.
+        \item \textbf{Archipelago:} Archipelago is a scalable, low-latency serverless platform that focuses on resource partitioning and decentralized scheduling. It aims to improve the performance and efficiency of serverless applications \cite{singhvi_archipelago_2019}.
+        \item \textbf{Performance and Efficiency:}  Another study demonstrates that the system can achieve near-native performance while significantly improving resource efficiency. It highlights substantial cost savings and energy efficiency gains through better resource allocation and reduced idle times \cite{tavares_leveraging_2021}.
+        \item \textbf{XaaS:} Aims to provide a unified architecture that leverages the strengths of both HPC and Cloud, enabling users to access high-performance resources transparently, regardless of the underlying cloud or HPC service provider \cite{XaaS-torsten}.
+    \end{itemize}
+
+    Overall the work seems to cover extensively the use of serverless computing for reduction of latency and enhancement of scalability for HPC workloads, while achieving near-native performance, Better resource utilization is a byproduct of these efforts, leading subsequently to a cost reduction too. Finally, the development of unified architectures like \textit{XaaS} integrates HPC and Cloud by making HPC resources more accessible and efficient.
+
+    % Imagine harnessing the raw computational muscle of a supercomputer without the hefty maintenance and upfront costs. That's the tantalizing vision of Cloud-HPC convergence, where the boundaries between Cloud and High Performance Computing blur, creating a unified system capable of seamlessly executing both traditional HPC and Cloud applications (Gadban, 2022). This subchapter delves into this transformative journey, exploring its potential, the hurdles it faces, and the exciting research paths leading towards its complete realization.
+
+    % Three distinct paths lead us towards this convergence:
+
+    % HPC in the Cloud: \\
+    % Think of this as migrating existing HPC applications to the Cloud's vast resource pool. Imagine simulating complex weather patterns or analyzing massive datasets through Cloud-based computing power, previously accessible only through dedicated HPC clusters.
+    % HPC Plus Cloud: \\
+    % This approach acts as a sidekick, supplementing on-premise HPC resources with Cloud infrastructure during peak demand periods. Think of it as Cloud bursting, where intensive workloads temporarily spill over to the Cloud, ensuring smooth operations without exceeding on-premise capacity.
+    % HPC as a Service: \\
+    % Here, the Cloud becomes the primary provider, offering HPC resources directly through Cloud services. Imagine accessing specialized hardware like GPUs or high-performance storage on demand, eliminating the need for upfront investment and ongoing maintenance.
+
+    % Each approach offers unique advantages in terms of resource allocation and user experience. For instance, containerization technologies offer lightweight virtualization, streamlining application deployment and management in the Cloud \cite{marques_harnessing_2021}. This flexibility empowers researchers and developers to experiment with diverse hardware configurations, fostering innovation without breaking the bank.
+
+    % However, the path to seamless convergence isn't without its roadblocks. The Cloud's inherent abstraction layers, designed for general-purpose computing, can sometimes limit the fine-tuning capabilities crucial for optimizing HPC applications, potentially impacting performance \cite{netto_hpc_2019}. Additionally, the high-bandwidth demands of tightly coupled HPC workloads can outpace existing Cloud network capabilities, leading to bottlenecks and performance degradation \cite{alves_interference-aware_2020}.
+
+    % But the research community is undaunted, actively tackling these challenges. One promising solution is **elasticity in HPC**, enabling applications to dynamically adjust resource usage based on workload demands \cite{eberius_evaluating_2023}. Imagine an HPC application automatically scaling up resources during intensive calculations and scaling down during idle periods, optimizing both performance and cost efficiency.
+
+    % Another exciting avenue is \textbf{resource disaggregation}, where individual resources like CPU, memory, and storage are decoupled and allocated independently within the Cloud infrastructure \cite{michelogiannakis_case_2022}. This granular control allows for more efficient utilization of specialized hardware, catering to the diverse needs of various HPC applications.
+
+    % Furthermore, researchers are developing dedicated \textbf{high-performance Cloud networks} specifically designed to handle the intense data movement demands of HPC workloads. These networks promise to eliminate bandwidth bottlenecks, unlocking the full potential of Cloud-based HPC for large-scale simulations and data analysis.
+
+    % The impact of Cloud-HPC convergence extends far beyond technical considerations. Imagine democratizing access to cutting-edge computing power, enabling smaller research institutions and startups to tackle complex problems previously restricted to large organizations with dedicated HPC infrastructure. This democratization opens doors to groundbreaking discoveries across various fields, from drug development and materials science to climate modeling and artificial intelligence.
+
+    % The future of Cloud-HPC convergence is brimming with possibilities. With dedicated research efforts addressing existing challenges and unlocking new capabilities, this transformative technology holds the potential to revolutionize how we approach computational challenges, ushering in an era of faster scientific breakthroughs, groundbreaking innovations, and a more collaborative and accessible research landscape.
+
+    % This expanded version incorporates specific examples, highlights the broader societal impact of Cloud-HPC convergence, and offers a more holistic perspective on its future potential.
+
+
+
+
+
+    % ################################################################################
+\subsection{Reproducibility and Transparency}
+\label{sec:reproducetransparency}
+    The portability of HPC applications to Cloud environments is a significant challenge. HPC systems often rely on highly optimized, vendor-specific tools and libraries, which can be challenging to port to Cloud platforms. This incompatibility can lead to performance degradation and necessitate significant code modifications \cite{zhao_resource_2023, liao_bridging_2021, choudhary_exascale_2021}.
+
+    Containerization technologies, such as \textit{Docker} and \textit{Singularity/Apptainer}, offer a solution for portability. By encapsulating applications and their dependencies within isolated environments, containers can be deployed across different platforms with minimal effort. However, containerization itself introduces overhead, and the performance of containers on HPC systems can vary significantly depending on the container engine and the underlying hardware \cite{zhang_performance_2021, zhang_framework_2023, zhao_resource_2023}.
+    Efforts to standardize container formats and APIs, such as the Open Container Initiative (OCI), are crucial for improving portability. However, these standards do not yet address all aspects of HPC-specific requirements, such as the need for efficient access to specialized hardware accelerators \cite{zhao_resource_2023}.
+
+    Ease of use is a major factor in enabling portability. Complex setup procedures are a barrier for new users and limit the adoption of HPC resources. Cloud platforms, on the other hand, are generally designed to be user-friendly, with intuitive interfaces and automated tools. This accessibility makes Cloud computing appealing to a broader range of users [1, 3, 10, 15, 17, 22]. Additionally, a set of methodological principles exists that attempt to further foster reproducibility in cloud computing research, which includes repeated experiments, workload and configuration coverage, experimental setup description, open access artifact, probabilistic result description of measured performance, statistical evaluation, reporting of measurement units and cost model \cite{iosup-reproducibility}. Ideally, a converged system should offer a consistent and intuitive interface that hides the underlying complexity of both HPC and Cloud infrastructure.
+
+
+
+
+    % ################################################################################
+\subsection{Economic and Market Dynamics}
+\label{sec:economicmarketdynamics}
+        % “Most research efforts in HPC-Cloud aim to understand the cost-benefit of moving resource-intensive applications from on-premise environments to public Cloud platforms. Industry trends show hybrid environments are the natural path to get the best of the on-premise and Cloud resources—steady (and sensitive) workloads can run on on-premise resources and peak demand can leverage remote resources in a pay-as-you-go manner.” ([Netto et al., 2019, p. 81](zotero://select/library/items/PDHAK8LB)) ([pdf](zotero://open-pdf/library/items/43NTJN9N?page=1))
+
+
+    The majority of research in the field of HPC Cloud is aimed at understanding the cost-benefit analysis of migrating resource-intensive applications from on-premise environments to public Cloud platforms \cite{netto_hpc_2019}. These environments are managed by batch schedulers that queue user requests to run jobs when resources are heavily used. However, without Service Level Agreements (SLAs), users have no visibility or concerns about the costs of running jobs, leading to potential resource wastage and poor quality of service \cite{netto_hpc_2019}.
+
+
+     Steady and sensitive workloads can run on on-premise resources, while peak demand can leverage remote resources in a pay-as-you-go manner \cite{netto_hpc_2019}. However, Cloud providers often offer machines with a higher number of CPU threads and more memory than necessary, increasing the costs of the cluster \cite{gurgul_cloud-native_2023}. In contrast, GPU-based clusters with thousands of threads per node may seem superior, but they also have their limitations \cite{gurgul_cloud-native_2023}. The predictability of running computations in the Cloud is lower than in on-premise clusters due to the multi-tenant nature of Cloud and the potential for many concurrent workloads scheduled on the same hardware \cite{gurgul_cloud-native_2023}. One solution to this problem is the exclusive rental of machines in the Cloud (bare-metal). However, this service is currently limited in its availability and comes at a considerably higher price compared to regular nodes \cite{gurgul_cloud-native_2023}. Furthermore, the cost of running workloads and storing their results on-premises and in the Cloud can be prohibitive when the cluster is heavily used, especially when considering other expenses like traffic and storage \cite{gadban_analyzing_2022}. Despite these challenges, many organizations have been moving their applications or even their entire data centers to the Cloud, motivated by the economic advantages in terms of real estate, equipment costs, and manpower compared to private data centers \cite{alashaikh_survey_2021}. This shift has been facilitated by the high degree of flexibility offered by Cloud data centers, where services and applications can be deployed, terminated, migrated, and replicated on demand \cite{alashaikh_survey_2021}. However, it has been shown that users, not just service providers, actively affect the environmental impact of such systems. This highlights the need for improved mechanisms that enable interaction between providers and users to optimize resource usage, specifically targeting HPC due to additional constraints that traditional data centers do not experience \cite{silva_review_2024}. The increasing usage rate in HPC as a Service (HPCaaS) can contribute to more sustainable HPC. This can be achieved not only by taking advantage of HPC-Cloud sites with better conditions for free cooling and availability of Renewable Energy Sources (RES) but also by using \textit{spatio-temporal workload shifting} with regional grid carbon intensity as a signal, similar to what is already being done in traditional Cloud Computing \cite{silva_review_2024}.
+
+     The HPC-Cloud convergence, currently, is limited by the fact that HPC communities are often conservative in adopting new technologies and alternative paradigms, which is rooted in the high cost of HPC systems and the need to ensure that new technologies do not compromise performance. The cost-effectiveness of Cloud-based HPC solutions is a major driver for convergence. Cloud computing offers a pay-as-you-go model, allowing users to access high-performance resources on demand without the upfront investment required for traditional HPC systems. This flexibility, combined with the potential for resource optimization, makes Cloud-based HPC an attractive option for researchers and organizations with varying computational needs. \\
+
+
+    \subsubsection{Cost Efficiency and Resource Management: Optimizing for Value}
+    \label{sec:costefficiency}
+
+
+
+    \paragraph{Instance Selection:} Studies like \cite{walkup_best_2022} provide guidance on selecting the most cost-effective VM instances for different HPC workloads. The choice between single large instances and multiple smaller instances depends on the specific application requirements and communication patterns.
+    \begin{itemize}
+    \item{Large Shared-Memory Instances} For latency-sensitive applications, large shared-memory instances outperform multiple smaller instances due to reduced communication overhead. This is because data can be accessed directly within the VM's memory, eliminating the need for network communication between different instances.
+    \item{Cost-Effectiveness} For configurations with the same total number of vCPUs and memory, the cost-effectiveness is similar. This means that users can choose the configuration that best suits their specific needs without significant cost implications.
+    \end{itemize}
+    \paragraph{Resource Disaggregation:}
+    \begin{itemize}
+        \item {Intra-Rack Disaggregation} Studies like \cite{michelogiannakis_case_2022} demonstrate that disaggregation can significantly reduce resource usage and improve cost efficiency. The study analyzes the utilization of memory and NIC resources in an HPC environment, finding that a significant proportion of time memory occupancy is well below capacity. The research quantifies the benefits of intra-rack resource disaggregation, particularly focusing on reducing memory and NIC resources.
+        \item {Photonics Integration} \cite{michelogiannakis_efficient_2023} explores the use of co-packaged dense wavelength division multiplexing (DWDM) photonics for intra-rack resource disaggregation. This approach provides a flexible and high-bandwidth solution to meet the stringent requirements of HPC applications, achieving an average application speedup of 11\% (up to 46\%) for CPU benchmarks and 61\% for GPU benchmarks compared to systems using electronic switches.
+    \end{itemize}
+
+    \paragraph{Automated Optimization - Intelligent Resource Management:}
+
+    Several studies propose automated systems for detecting and rectifying inefficiencies in Cloud resource configurations. These systems leverage machine learning and data analysis techniques to identify suboptimal configurations and suggest improvements, leading to significant cost savings and performance enhancements \cite{greneche_methodology_2022, michalewicz_attempt_2023,giannoutakis_evaluation_2021}.
+    \begin{itemize}
+        \item Automated Detection and Rectification: highlights the potential for significant cost savings through automated optimization of Cloud resource usage. The study identifies common pitfalls in resource configuration, proposes automated detection and rectification techniques, and demonstrates significant cost savings and performance improvements through real-world case studies.
+        \item Performance and Scalability: A study shows that the automated detection and rectification system can scale across different Cloud environments and HPC workloads, maintaining effectiveness in diverse scenarios. The system achieves substantial performance gains by aligning resource allocation with workload requirements, resulting in faster job completion times and improved resource utilization.
+    \end{itemize}
+
+    Moving to the Cloud involves a shift from capital expenditure (CapEx) to operational expenditure (OpEx). Capital expenditure (CapEx) involves large, upfront investments in physical assets like equipment or infrastructure, which are depreciated over time. Operational expenditure (OpEx) refers to ongoing costs for running a business, such as utilities and service subscriptions. In cloud computing, OpEx represents the shift from purchasing and maintaining hardware (CapEx) to paying for cloud services on a flexible, usage-based model, reducing the need for significant upfront spending. This transition is attractive for organizations with limited capital \cite{netto_hpc_2019,varghese_next_2018,gill_taxonomy_2018,ahn_flux_2020,rodriguez_container-based_2019,netto_hpc_2019,gadban_analyzing_2021,gadban_investigating_2020}. However, the OpEx model can be more expensive in the long run, especially for compute-intensive workloads.
+    Migrating HPC workloads to the Cloud can involve significant costs for software and hardware adaptation. This includes the cost of porting applications, acquiring new licenses, and potentially purchasing new hardware. The transition to a converged environment also requires training for both users and administrators. This can be a significant cost factor, especially for organizations with limited resources. Overall, the costs of the transition to a converged system are unclear at this moment.
+
+
+
+
+
+
+
+
+
+% \begin{table*}[h!]
+% \centering
+% \small
+% \caption{Summary of Key Points for Slides on HPC-Cloud Convergence}
+% \begin{tabular}{p{3.5cm}|p{10.5cm}}
+% \toprule
+% \textbf{Slide Topic} & \textbf{Key Points} \\
+% \midrule
+% \textbf{Technological Aspects and Infrastructure} &
+% \makecell[l]{\textbf{Closing the Performance Gap:} Hardware Advancements, Network Performance (InfiniBand, RDMA, CXL), Specialized Hardware (GPUs, TPUs, FPGAs), Bare-Metal Servers \\
+% \textbf{Enabling Portability and Flexibility:} Containerization (Docker, Apptainer), Elasticity (DMR API, PMIx), Cloud Storage for HPC (S3, Azure Blob) \\
+% \textbf{Optimizing Resource Utilization:} Resource Disaggregation, Improved rack utilization, Challenges in large-scale implementation} \\
+% \midrule
+% \textbf{Performance, Configuration, and Deployment Models} &
+% \makecell[l]{\textbf{Approaches to HPC-Cloud Convergence:} HPC in the Cloud, HPC plus Cloud, HPC as a Service, Mixed Systems \\
+% \textbf{Challenges and Limitations:} Abstraction limits tuning, Network limitations, Multi-tenancy issues, Research needs \\
+% \textbf{IaaS:} Replacing on-premise clusters, Flexible core count, Elastic jobs with public Cloud benefits} \\
+% \midrule
+% \textbf{Hybrid Cloud and HPC Integration} &
+% \makecell[l]{\textbf{Hybrid Cloud:} Combines on-premise HPC with Cloud, Cloud Bursting, Workflow Management \\
+% \textbf{Serverless Computing:} Dynamic resource allocation, Improved utilization, FaaS Integration \\
+% \textbf{Towards Unified Architecture:} XaaS with performance-portable containers, Flexibility with serverless computing} \\
+% \midrule
+% \textbf{Reproducibility and Transparency} &
+% \makecell[l]{\textbf{Portability Challenges:} Vendor-specific tools, Performance degradation, Code modifications \\
+% \textbf{Containerization:} Docker, Singularity/Apptainer for portability, Overhead and performance considerations \\
+% \textbf{Standardization:} Open Container Initiative (OCI), Hardware accelerator access issues} \\
+% \midrule
+% \textbf{Economic and Market Dynamics} &
+% \makecell[l]{\textbf{Cost-Benefit Analysis:} Migrating HPC to Cloud, Resource wastage, Hybrid environments \\
+% \textbf{Cloud Provider Considerations:} Cost optimization, Oversized machines, Multi-tenancy impact, Bare-metal rental costs \\
+% \textbf{Shift to Cloud:} Economic advantages, Flexibility, Environmental impact optimization} \\
+% \bottomrule
+% \end{tabular}
+% \end{table*}
+
+
+
+
+
+    % Cost-benefit analysis of moving resource-intensive applications from on-premise environments to public Cloud platforms.
+    % Hybrid environments as the natural path forward.
+    % Challenges in resource allocation and cost management.
+    % Impact of multi-tenancy on cost predictability.
+    % Exclusive rental of machines as a solution to cost predictability.
+    % Cost of running workloads and storing results on-premises and in the Cloud.
+    % Economic advantages of moving applications or data centers to the Cloud.
+    % Flexibility offered by Cloud data centers.
+    % Users' impact on the environmental sustainability of Cloud systems.
+    % Mechanisms for optimizing resource usage and sustainability.
+    % Spatio-temporal workload shifting for sustainability.
+    % Future trends in HPC systems featuring GPUs, accelerators, and new memory technologies.

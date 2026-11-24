@@ -1,0 +1,132 @@
+\section{Study Design}\label{sec:design}
+    % Section dedicated to document your study was carried out
+The following subsections provide an account of the initial search strategy (\autoref{sec:init_search}), selection criteria (\autoref{sec:sel_criteria}), data extraction process (\autoref{sec:data_extraction}), data synthesis approach (\autoref{sec:data_synth}), and steps taken to ensure the replicability of the study (\autoref{sec:replicability}).
+
+
+\subsection{Research Goal}
+\label{sec:research_goal}
+    % \todo{What is the research goal of this study should be documented in this section. This can follow the GQM approach, as described in the following sentence, which NEEDS TO BE REPHRASED IN YOUR OWN WORDS if you want to include it in your study.}
+
+    The topic of HPC in the Cloud has been studied for some time now, and challenges of infrastructure, performance, portability, and costs persisted for a good part of the last decade. For example, the lack of fast intra-node networks in the Cloud, often relying on TCP/IP and Ethernet, compared to the \textit{high-performance interconnects} used in HPC clusters (e.g., InfiniBand, Cray Slingshot, RDMA over Converged Ethernet (RoCE)), significantly impacted the performance of tightly coupled HPC applications \cite{wang2010cloud, gupta2014challenges}. These network bottlenecks also increased the cost of running long-running HPC applications in the Cloud due to unpredictable performance variations \cite{gupta2014challenges, marathe2013challenges, de_sensi_noise_2022}. Additionally, the shared nature of Cloud resources made it difficult to predict the performance of HPC applications, as the presence of other workloads on the same physical infrastructure could lead to unpredictable performance variations and resource contention \cite{gupta2014challenges, marathe2013challenges}. These factors, along with the cost of Cloud computing for HPC workloads, hindered the adoption of Cloud solutions for HPC in the early stages \cite{jackson2010performance, gupta2014challenges, marathe2013challenges}.
+
+    The primary objective of this literature review, thus, is to gain insight into the current challenges and potential solutions associated with transitioning on-premise HPC applications to the Cloud or the convergence of the two. The study also entails defining exactly the main areas of interest at the moment in terms of the effort in bringing the two types of systems closer, whether the trend of \textit{Cloudification} is promising, and analyzing studies that focused on some very common HPC applications, like AI workloads, scientific simulations, and so on.  To underline the main objective of this review, we define the following contributions of this report.
+
+    \begin{center}
+        \begin{itemize}
+            \item [\textbf{Con-1}] An update of the current, fast-changing, state of the art in HPC-Cloud interaction
+            \item [\textbf{Con-2}] A qualitative advice for researchers and scientific programmers on what to expect from their large-scale applications when moving from on-premise to Cloud systems
+            \item [\textbf{Con-3}] An overview of what are the promising convergence modalities between HPC and Cloud
+            \item [\textbf{Con-4}] An update of the current trends, challenges, and expectations of the HPC-Cloud field for the end of the decade
+        \end{itemize}
+    \end{center}
+
+
+\subsection{Research Questions}
+\label{sec:questions}
+    % \todo{In this subsection, the research questions underlying your study should be reported}
+We want to define and cover the evolution of the HPC-Cloud transition and their merging areas, and investigate the latest advances and results from influential publications. Based on this premise, we define the following Research Questions:\\
+
+
+    % \todo{to update based on feedback}
+\begin{itemize}
+    \item \textbf{RQ-1}: What are the key challenges in transitioning on-premise HPC applications to the Cloud?
+    \item \textbf{RQ-2}: How did the transition challenges evolved in time?
+    \item \textbf{RQ-3}: What are the main HPC-Cloud configurations, and how do they affect performance, cost, and energy? What are the trade-offs?
+    \item \textbf{RQ-4}: What hardware and software design aspects of HPC applications hinder seamless Cloud integration, and how are these challenges being addressed?
+\end{itemize}
+
+    % \todo{to update based on feedback}
+
+
+
+\subsection{Initial search}
+\label{sec:init_search}
+    % \todo{How was the initial search for literature carried out should be reported in this section}
+    To adhere to the initially defined objectives, the study aimed to identify a comprehensive set of studies that explored the convergence of HPC and Cloud computing. This search was conducted using a combination of databases and keywords, carefully selected to capture the breadth and depth of the research area.
+    The primary databases used were Scopus, IEEE Xplore, and dblp, chosen for their comprehensive coverage of computer science and engineering research. These databases offer a vast repository of peer-reviewed publications, ensuring the inclusion of high-quality and relevant studies in the review.
+    The selection of keywords was equally important, as they served as the foundation for the initial search and guided the identification of relevant studies. The keywords were chosen to reflect the key themes of the review, encompassing both general and specific aspects of HPC-Cloud convergence.
+    The initial search employed a combination of general keywords, such as "High-Performance Computing", "Cloud Computing", "HPC in the Cloud", and "HPC-Cloud Convergence", to capture the broad scope of the research area. These keywords were used to identify studies that addressed the overall concept of integrating HPC and Cloud computing.
+    To further refine the search and identify studies that focused on specific aspects of convergence, additional keywords were incorporated. These included "Cloud Bursting", "Resource Disaggregation", "AI for HPC", "Machine Learning for HPC", and "Serverless Computing" \autoref{tab:keywords}. These keywords helped to identify studies that explored specific challenges, solutions, and emerging trends within the field of HPC-Cloud convergence \cite{gadban_analyzing_2022, michelogiannakis_case_2022, copik_software_2024, chahal_isesa_2022, michalewicz_attempt_2023, silva_review_2024, liang_scalable_2022, eberius_evaluating_2023, alves_interference-aware_2020, kolodziej_cloud-based_2019, kabir_uncertainty-aware_2022, reed_hpc_2023}.
+    The initial search yielded numerous results from the past 5 years, reflecting growing interest and research activity in this dynamic field. However, there was almost no material offering a comprehensive, high-level overview of the convergence of the two paradigms (\cite{netto_hpc_2019}, \cite{liu_hpc_2022}). This initial set of results provided a starting point for the review, but refining the selection using the criteria described in the next section was essential. These criteria ensured that only the most relevant and high-quality studies were included, ultimately contributing to a comprehensive and insightful analysis of the current state of HPC-Cloud convergence.
+
+\begin{table*}[ht!]
+\centering
+\small
+\begin{tabular}{c|l|c|c}
+\hline
+\rowcolor{gray!20} \textbf{No.} & \textbf{Keywords} & \textbf{Number of Articles Found} & \textbf{Articles Used} \\ \hline
+\hline
+\textbf{First Iteration} \\ \hline
+\rowcolor{white} 1 & HPC-Cloud & 89 & 15 \\ \hline
+\rowcolor{gray!20} 2 & HPC AND cloud AND convergence & 38 & 8 \\ \hline
+\hline
+\textbf{Second Iteration} \\ \hline
+\rowcolor{white} 3 & HPC AND Cloud AND Bursting & 10 & 3 \\ \hline
+\rowcolor{gray!20} 4 & HPC AND Resource AND Disaggregation & 22 & 7 \\ \hline
+\rowcolor{white} 5 & Serverless AND HPC & 53 & 7 \\ \hline
+\rowcolor{gray!20} 6 & Reproducibility AND HPC AND Cloud & 41 & 2 \\ \hline
+\rowcolor{white} 7 & Elastic AND Cloud AND HPC & 47 & 5 \\ \hline
+\end{tabular}
+\caption{Number of articles found and used for each keyword}
+\label{tab:keywords}
+\end{table*}
+
+
+
+
+
+\subsection{Application of selection criteria}
+\label{sec:sel_criteria}
+
+
+    As previously mentioned, the topic of HPC-Cloud is a very prolific area of research at the moment, and we can observe numbers of pre-prints (on Scopus) Just for the current year in order of four to six hundred for the selected search keywords. Therefore, we found it necessary to define a relatively large number of strict selection criteria in order to be able to satisfy the expected contributions mentioned in \autoref{sec:research_goal}.
+
+    \begin{enumerate}
+        \item[{I}1-] A study that addresses specific software or hardware solutions in HPC-Cloud context
+        \item[{I}2-] A study that is peer-reviewed
+        \item[{I}3-] A study that has been published in the last 5 years time frame
+        \item[{I}4-] A study that brings together HPC and Cloud - direct/indirect comparison
+        \item[{I}5-] A study that presents clear empirical metrics
+    \end{enumerate}
+
+    Similarly, we define the exclusion criteria:
+
+    \begin{enumerate}
+        \item[{E}1-] A study that is not peer-reviewed (i.e. not published on any reputable journal platform.)
+        \item[{E}2-] A study that is outdated. In the scope of this study, the main points should be covered by literature in the range 2021-2024, while all the others can be supported by older literature for the sake of providing context and background.
+        \item[{E}3-] A study with less than 10-20 citations. This aids in filtering out a large amount of non-primary papers, and to avoid possible threats to conclusion validity (\autoref{sec:threatsvalidity}).
+    \end{enumerate}
+
+
+
+\subsection{Snowballing}
+\label{sec:snowballing}
+    % \todo{If a snowballing approach was used for the literature review, its details should be documented in this subsection}
+
+    In an attempt to gather a broad overview of the topic and relevant papers, a partial snowballing approach was adopted. Without a seed paper, the initial papers of interest helped define the search path. This approach was beneficial for understanding the overall breadth of the topic, the average age of the referenced articles, and identifying key figures, institutions, or journals that appeared repeatedly. It quickly helped gather material for the reference manager and prioritize essential sources. As mentioned in \autoref{sec:sel_criteria}, this method also ensured the inclusion of articles within the last 5 years.
+
+
+\subsection{Data Extraction}
+\label{sec:data_extraction}
+    % \todo{Report in this section the data extraction followed to gather the data for the study (e.g., what process did you followed to gather the data in the companion data extraction spreadsheet?)}
+    After an initial substantial body of research papers was gathered, the next step was to start to sort out the useful papers and to discard the less useful ones. The initial processing was done by reading the introduction, similar work, and conclusions of the selected papers. Furthermore, the idea was to combine the process of categorizing the papers as useful and unuseful with the process of forming classes of work. These classes would naturally form as the reading progressed, allowing us to form a restricted number of macro categories that the works would discuss. These categories include past challenges, infrastructure and technology improvements, deployment models (i.e. hybrid Cloud, HPCaaS, etc.)(\autoref{tab:hpc_cloud_categories}), economic aspects, portability, and will be discussed in greater detail in the following sections of this report.
+
+    The process of data extraction was facilitated by a literature matrix, where comments and summaries were added, and the final inclusion of the paper into the useful stack could be signed. For other recaps, notes, topic tags, etc., my reference manager of choice, Zotero, was used. Here, the intuitive note tool allowed me to have all of the recap material smoothly gathered in one project directory, which allowed for an easy recollection of information throughout the writing of this review. Furthermore, the tags feature allowed me to easily categorize the papers based on the class of work and, subsequently, visualize all the relevant material for a specific class in one list.
+
+\input{tex files/tables/table1.tex}
+
+
+
+\subsection{Data Synthesis}
+\label{sec:data_synth}
+    % \todo{What approach did you followed to carry out the data synthesis process and summarize the data extracted from the primary studies?}
+    As briefly mentioned in \autoref{sec:data_extraction}, most of the data synthesis was done using the reference manager software of choice, Zotero. After an initial screening of the papers and the addition of basic notes over the introduction and conclusion sections, the next phase would be to include a second set of lower-level summaries of the, first, some of the most important papers covering all classes of work, or covering one class of work in depth and with high grade of influence and quality. This would allow us to generate the first synthesized material, and to place it into the correct sections of classes of work. The classes of work, initially defined, were meant to be partly malleable and to allow room for updates, addition, removal, and modification in later stages, as the review was being synthesized.
+
+    After defining the first review parts based on the most influential primary papers, the smaller and more specific papers would fill further details of the review.
+
+
+\subsection{Study Replicability}
+\label{sec:replicability}
+
+
+    The reproducibility of this survey is made possible by making the used matrices in the data extraction phase accessible to the public \cite{literature-matrix}. The provided table includes the majority of the papers and their contents sorted in the respective macro categories mentioned in \autoref{sec:data_extraction}.

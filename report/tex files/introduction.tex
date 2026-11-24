@@ -1,0 +1,32 @@
+\section{Introduction}
+% \todo{Present the topic of the literature review, including background of research field, goal, methodology, and contribution of the paper (e.g., map of the state of the art, reusable classification approach, evaluation of results, discussion of results, and target audience)}
+
+For a good part of the last decade the interest in transitioning from HPC on-premise infrastructures to an on-demand Cloud environments has been intensifying and pulling in numerous different directions. The research regarding the topic is continuing to grow and  both HPC and Cloud are distinctively improving on their core technologies, as well as growing in popularity. As we saw the exascale milestone was officially being achieved in mid 2022, and the yearly growth of both markets is high. Currently, most HPC platforms, both academic and industrial, are on-premise. However, a report by Hyperian Research states that while the on-premise HPC market is growing at 7\% a year until 2024, the HPC Cloud market will grow at 17\% a year \cite{silva_review_2024} in the Netherlands. In the U.S., holding the largest share of global market share in both HPC and Cloud, the prospects of annual growth are even higher (20\% for Cloud and 9\% for HPC), while the market shares are (for 2023) \$14.6 billion for HPC and \$216 billion for Cloud. This puts the process of convergence in perspective, suggesting that while HPC remains a critical and distinct technology, it is the one being integrated within the broader ecosystem of Cloud computing.
+
+
+
+There are multiple areas of interest within the HPC-Cloud discussion and most of them seem to primarily branch from the performance inconsistencies when transitioning from one system to another, as well as the technical challenges in adapting from one system to another.
+
+\noindent
+\begin{enumerate}
+\item \textbf{Containerization and Virtualization:} These pivotal technologies facilitate the transition, allowing containerized software to uniformly operate across diverse platforms, fostering the seamless exchange of technology between HPC and Cloud. The adaptability introduced by containerization and virtualization plays a crucial role in easing the transition process.
+\item \textbf{Performance Evaluation:} The performance evaluation of distinct HPC-Cloud configurations and their convergence emerges as a critical realm of exploration. \textit{HPC-Cloud convergence} will be used throughout the text and indicates the intersection and co-working of HPC and Cloud paradigms. The inherent challenges associated with performance inconsistencies during the transition from one system to another are still unclear. Unraveling these intricacies is necessary for optimizing the performance of HPC applications in Cloud environments or in mixed environments, ensuring their efficacy and reliability. The heterogenization of large compute systems adds another layer of complexity to the evolving landscape of HPC and Cloud computing. Specialized hardware, such as CPUs, GPUs, Tensor Processing Units (TPUs), Field Programmable Gate Arrays (FPGAs), and other domain-specific hardware, reshape the traditional paradigms in computing and, thus, are hard to bridge altogether.
+
+\item \textbf{Reproducibility of Scientific Results:} Ensuring the reproducibility of scientific results remains a fundamental requirement within the context of HPC-Cloud integration. Robust methodologies must be in place to guarantee that scientific experiments conducted in Cloud environments can be accurately reproduced on different platforms or at various points in time, upholding the integrity of scientific research. Data access transparency emerges as a paramount concern in an era where scientific data is increasingly stored and processed in the Cloud. Establishing mechanisms for transparent and efficient access to this data is imperative to sustain the fluidity of scientific workflows. The user experience and migration frameworks play a pivotal role in the successful adoption of Cloud technologies within the HPC community and vice-versa. Developing tools and frameworks that facilitate the seamless migration of HPC applications to the Cloud, coupled with an emphasis on providing an intuitive and user-friendly experience, are essential components for fostering widespread acceptance and utilization.
+
+\item \textbf{Economic Considerations:} Navigating the economic landscape, the costs associated with transitioning to the Cloud in a dynamic market and evolving infrastructures come to the forefront. Organizations contemplating this shift must carefully consider the economic aspects of Cloud computing, focusing on cost-effectiveness and evaluating the return on investment. Despite the growing prominence of Cloud computing, there exists a notable gap in research concerning large-scale workloads of HPC in the Cloud.
+\end{enumerate}
+
+Overall, the transition from on-premise HPC to the Cloud is a multifaceted journey, encompassing a spectrum of high-stakes considerations. This review attempts to shed some additional light on what is the current estimation of the future for the co-existence and merging of Cloud and on-premise systems, focusing mainly on current challenges that both the stakeholders and the users encounter in the process of transitioning. Additionally, an overview of popular challenges of HPC in the Cloud (e.g. network bandwidth and latency, topology, multi-tenancy, virtualization, and filesystem issues, among others) is examined to understand whether they persist at this moment in time or have been solved by recent innovation.
+
+% containerization, virtualization, and exchange of technology of the two fields
+% performance of different HPC-Cloud configurations and convergence
+% heteronization of hardware
+% reproducibility of scientific results
+% data access transparency
+% costs in a constantly evolving market and infrastructures
+% lack of studies on large scale workloads of hpc in Cloud
+% sustainability issues
+% user experience and migration frameworks
+
+% “As heterogeneity increases, so does the risk of underutilizing expensive hardware resources if we preserve today’s rigid node configuration and reservation strategies.” ([Michelogiannakis et al., 2022, p. 291](zotero://select/library/items/NQ9MZGGT)) ([pdf](zotero://open-pdf/library/items/UWPKERIF?page=1))
