@@ -1,6 +1,6 @@
-# Literature survey on HPC in the cloud
+# HPC in the Cloud · 2023 Literature Survey
 
-Reading list from a 2023 survey of running HPC workloads on cloud infrastructure.
+Completed 2023 research artifact on running HPC workloads on cloud infrastructure. This archive preserves the report, source, and reading list.
 
 ## Survey report
 
