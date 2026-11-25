@@ -4,11 +4,11 @@ Completed 2023 research artifact on running HPC workloads on cloud infrastructur
 
 ## Survey report
 
-- [Read the full survey report (PDF, 14 pages)](report/main.pdf)
+- [Read the full survey report (PDF, 18 pages)](report/main.pdf)
 - [Browse the full bibliography (47 entries)](BIBLIOGRAPHY.md)
 - [LaTeX source](report/main.tex) and [BibTeX bibliography](report/references2.bib)
 
-The archived PDF is titled *HPC in the Cloud: ana overview of the issues in transitioning and the reasons to overcome them*. The LaTeX source is titled *Bridging HPC and Cloud: Issues and Incentives*.
+The archived PDF is titled *HPC-Cloud Convergence: an overview of the issues in transitioning and the reasons to overcome them*. The LaTeX source is titled *Bridging HPC and Cloud: Issues and Incentives*.
 
 ## Zotero collections
 
